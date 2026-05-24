@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ORIA
 
-## Getting Started
+> Vitrina editorial para maestros chilenos del cuero. Una iniciativa de Valiz.
 
-First, run the development server:
+Capa Next.js 16 sobre Shopify Storefront API. Desplegada en
+[oria.valiz.cl](https://oria.valiz.cl) (Vercel). Mismo store Shopify que Valiz
+(`valiz-cl.myshopify.com`); el checkout se realiza en valiz.cl.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- Next.js 16 (App Router, Turbopack)
+- React 19
+- Tailwind v4 (`@tailwindcss/postcss`, configuración inline en `app/globals.css`)
+- TypeScript
+- `gray-matter` + `marked` para contenido en `/content/*.md`
+
+> ⚠️ Next 16 y Tailwind 4 traen breaking changes vs versiones anteriores. Antes
+> de tocar APIs frescas, leer `node_modules/next/dist/docs/`. Ver `AGENTS.md`.
+
+## Estructura
+
+```
+app/
+  page.tsx                  # Home
+  manifiesto/page.tsx       # /manifiesto
+  vol-01/page.tsx           # /vol-01 (autor de la estación)
+  autor/[handle]/page.tsx   # /autor/marcelo-rojas
+  pieza/[slug]/page.tsx     # /pieza/cartera-saco etc.
+components/                 # Nav, Footer, PiezaCard, Placeholder
+lib/
+  piezas.ts                 # catálogo mock (reemplazar por Storefront API)
+  content.ts                # loader markdown
+  shopify.ts                # cliente Storefront (esqueleto)
+content/                    # placeholders editoriales
+  manifiesto.md
+  autores/marcelo-rojas.md
+  piezas/*.md               # 7 fichas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Aislamiento
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Repo, app, dominio y stack son independientes de `valiz-bitacora`. Comparten
+sólo: cuenta GitHub `benjacuerosvaliz-ai`, scope Vercel
+`benjacuerosvaliz-ais-projects`, y Shopify store `valiz-cl`. Ningún componente
+ni decisión visual se reutiliza.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Dev
 
-## Learn More
+```bash
+npm install
+cp .env.example .env.local   # completar SHOPIFY_STOREFRONT_TOKEN
+npm run dev                  # http://localhost:3000
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Estado actual
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sesión 1 (2026-05-24):
+- Setup técnico completo.
+- Dirección visual definida (Fraunces + Inter, paleta papel/sepia/bramante).
+- Estructura de rutas + placeholders editoriales con TODOs explícitos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Pendiente antes del lanzamiento — todo en `/content/*.md` con `estado: placeholder`:
+- Material real de Marcelo Rojas (bio, foto, grabación, ciudad, taller, años).
+- Manifiesto fundacional definitivo.
+- 7 fichas editoriales firmadas.
+- Fotos de cada pieza y de Marcelo.
+- Activación de Shopify Storefront API (reemplazar mock `lib/piezas.ts`).
 
-## Deploy on Vercel
+## DNS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dominio `oria.valiz.cl` configurado en Vercel. En HostingPlus (registrador de
+valiz.cl): registro CNAME `oria` → `cname.vercel-dns.com`.
