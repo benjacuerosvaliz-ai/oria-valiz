@@ -31,7 +31,7 @@ export default async function HomePage() {
             alcance. La obra es siempre del autor.
           </p>
 
-          <p className="text-xs md:text-sm text-ceniza tracking-[0.18em] uppercase mb-10">
+          <p className="text-xs md:text-sm text-ceniza tracking-[0.18em] uppercase mb-2">
             hist<span className="text-sepia">oria</span>
             <span className="mx-2">·</span>
             mem<span className="text-sepia">oria</span>
@@ -39,6 +39,9 @@ export default async function HomePage() {
             trayect<span className="text-sepia">oria</span>
             <span className="mx-2">·</span>
             vict<span className="text-sepia">oria</span>
+          </p>
+          <p className="text-xs text-ceniza italic mb-10">
+            Victoria, la calle donde están los talleres.
           </p>
 
           <div className="flex gap-5 items-center justify-center flex-wrap">

@@ -26,6 +26,16 @@ apropiamos del trabajo de nadie.
 Somos un sello editorial. Cada estación elegimos a un autor. Le damos vitrina,
 branding, ecommerce, alcance. La obra es suya. La firma también.
 
+## El nombre
+
+ORIA nace de las palabras que cargan el oficio: hist**oria**, mem**oria**,
+trayect**oria**, Vict**oria**.
+
+Las tres primeras son obvias: detrás de cada pieza hay una. La cuarta no.
+*Victoria* no se refiere a triunfo, se refiere a **la calle Victoria** — donde
+están concentrados los talleres de muchos de los maestros que ORIA quiere
+reconocer. Es un ancla geográfica, no un eslogan.
+
 ## Vol. 01
 
 El primer autor que recibimos es Marcelo Rojas. *Texto sobre Marcelo pendiente
