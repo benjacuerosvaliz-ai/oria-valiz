@@ -325,6 +325,58 @@ export async function removeLines(
   return normalizeCart(data.cartLinesRemove.cart);
 }
 
+// ─────────────────────── Pages & Policies ───────────────────────
+
+export type ShopifyPage = {
+  title: string;
+  body: string;
+  handle: string;
+};
+
+export type ShopifyPolicy = {
+  title: string;
+  body: string;
+  handle: string;
+};
+
+export type ShopPolicies = {
+  refundPolicy: ShopifyPolicy | null;
+  privacyPolicy: ShopifyPolicy | null;
+  termsOfService: ShopifyPolicy | null;
+  shippingPolicy: ShopifyPolicy | null;
+};
+
+export async function getShopPolicies(): Promise<ShopPolicies | null> {
+  const data = await gql<{ shop: ShopPolicies }>(
+    `query GetShopPolicies {
+      shop {
+        refundPolicy { title body handle }
+        privacyPolicy { title body handle }
+        termsOfService { title body handle }
+        shippingPolicy { title body handle }
+      }
+    }`,
+    {},
+    { revalidate: 3600 }
+  );
+  return data?.shop ?? null;
+}
+
+export async function getPage(handle: string): Promise<ShopifyPage | null> {
+  const data = await gql<{ page: ShopifyPage | null }>(
+    `query GetPage($handle: String!) {
+      page(handle: $handle) {
+        title
+        body
+        handle
+      }
+    }`,
+    { handle },
+    { revalidate: 3600 }
+  );
+  return data?.page ?? null;
+}
+
 // ─────────────────────── Helpers ───────────────────────
 
 export function formatCLP(amount: string | number): string {
