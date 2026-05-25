@@ -103,7 +103,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="hover:text-tinta transition"
             >
-              Instagram
+              Instagram <span className="text-ceniza/70">· @oria.cl</span>
             </a>
             <a
               href="https://www.tiktok.com/@valiz.z"
