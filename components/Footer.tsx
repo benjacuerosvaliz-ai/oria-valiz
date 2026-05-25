@@ -14,8 +14,8 @@ export function Footer() {
         <div className="text-sm text-ceniza space-y-1">
           <p>Santiago, Chile</p>
           <p>
-            <a href="mailto:hola@valiz.cl" className="hover:text-tinta">
-              hola@valiz.cl
+            <a href="mailto:oria@valiz.cl" className="hover:text-tinta">
+              oria@valiz.cl
             </a>
           </p>
           <p className="text-xs mt-4">© {new Date().getFullYear()} ORIA · Valiz</p>
