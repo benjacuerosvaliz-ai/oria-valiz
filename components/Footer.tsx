@@ -1,10 +1,12 @@
+import { LogoMark } from "@/components/LogoMark";
+
 export function Footer() {
   return (
     <footer className="border-t border-linea/60 mt-32">
       <div className="mx-auto max-w-6xl px-6 py-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="display text-3xl leading-none">ORIA</p>
-          <p className="mt-3 text-sm text-ceniza max-w-sm">
+          <LogoMark className="h-10 w-auto md:h-12" />
+          <p className="mt-4 text-sm text-ceniza max-w-sm">
             Vitrina editorial para maestros chilenos del cuero. Una iniciativa de
             Valiz.
           </p>
