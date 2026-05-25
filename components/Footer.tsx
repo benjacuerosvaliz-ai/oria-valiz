@@ -98,7 +98,7 @@ export function Footer() {
 
           <div className="flex gap-5">
             <a
-              href="https://www.instagram.com/valiz.z/"
+              href="https://www.instagram.com/oria.cl"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-tinta transition"
