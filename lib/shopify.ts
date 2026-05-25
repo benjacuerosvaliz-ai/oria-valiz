@@ -148,7 +148,7 @@ export async function getProductByHandle(
       product: productByHandle(handle: $handle) { ...ProductFields }
     }`,
     { handle },
-    { revalidate: 300 }
+    { revalidate: 30 }
   );
   if (!data?.product) return null;
   return normalizeProduct(data.product);
