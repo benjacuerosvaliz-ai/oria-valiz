@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { PIEZAS, getPieza } from "@/lib/piezas";
 import { loadDoc } from "@/lib/content";
+import { getProductByHandle, formatCLP, hasShopify } from "@/lib/shopify";
 import { Placeholder } from "@/components/Placeholder";
+import { AddToCart } from "@/components/AddToCart";
 
 type PiezaFrontmatter = {
   gesto?: string;
@@ -43,23 +46,75 @@ export default async function PiezaPage({
     doc = null;
   }
 
-  const shopifyUrl = `https://www.valiz.cl/products/${pieza.shopifyHandle}`;
+  const shopProduct = await getProductByHandle(pieza.shopifyHandle);
 
   return (
     <article className="mx-auto max-w-6xl px-6 py-16 md:py-24">
       <div className="grid md:grid-cols-2 gap-12">
-        <Placeholder label="Galería de fotos" height="640px">
-          Aquí van las imágenes de la pieza. Mínimo 3: producto en fondo
-          neutro, detalle de costura/material, contexto de uso o taller.
-          Pendiente sesión 4–5.
-        </Placeholder>
+        {/* Galería */}
+        {shopProduct?.featuredImage ? (
+          <div className="space-y-3">
+            <div className="aspect-[4/5] bg-archivo border border-linea/50 overflow-hidden">
+              <Image
+                src={shopProduct.featuredImage.url}
+                alt={shopProduct.featuredImage.altText ?? pieza.titulo}
+                width={800}
+                height={1000}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+            {shopProduct.images.length > 1 && (
+              <div className="grid grid-cols-4 gap-3">
+                {shopProduct.images.slice(0, 4).map((img, i) => (
+                  <div
+                    key={i}
+                    className="aspect-square bg-archivo border border-linea/50 overflow-hidden"
+                  >
+                    <Image
+                      src={img.url}
+                      alt={img.altText ?? `${pieza.titulo} ${i + 1}`}
+                      width={200}
+                      height={200}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <Placeholder label="Galería de fotos" height="640px">
+            Aquí van las imágenes de la pieza. Llegan automáticas cuando se
+            conecte Shopify Storefront API (o cuando subas fotos al producto
+            en Shopify Admin).
+          </Placeholder>
+        )}
 
+        {/* Info + compra */}
         <div className="flex flex-col">
           <p className="eyebrow mb-4">{pieza.autor}</p>
           <h1 className="display text-5xl md:text-6xl mb-3">{pieza.titulo}</h1>
           {pieza.subtitulo && (
-            <p className="text-ceniza italic text-lg mb-8">
+            <p className="text-ceniza italic text-lg mb-6">
               {pieza.subtitulo}
+            </p>
+          )}
+
+          {shopProduct ? (
+            <p className="display text-3xl mb-8">
+              {formatCLP(shopProduct.priceRange.minVariantPrice.amount)}
+              {!shopProduct.availableForSale && (
+                <span className="ml-3 text-xs text-ceniza align-middle">
+                  · agotado
+                </span>
+              )}
+            </p>
+          ) : (
+            <p className="text-sm text-ceniza mb-8 italic">
+              {hasShopify()
+                ? "Precio no disponible."
+                : "Precio aparece cuando se conecte Shopify."}
             </p>
           )}
 
@@ -97,18 +152,24 @@ export default async function PiezaPage({
             </dl>
           )}
 
-          <a
-            href={shopifyUrl}
-            className="mt-12 bg-tinta text-papel px-6 py-4 text-sm tracking-wide text-center hover:bg-sepia transition"
-          >
-            Llevar esta pieza →
-          </a>
-          <p className="mt-3 text-xs text-ceniza text-center">
-            El checkout se realiza en valiz.cl
-          </p>
+          {hasShopify() ? (
+            <AddToCart handle={pieza.shopifyHandle} />
+          ) : (
+            <div className="mt-12">
+              <a
+                href={`https://www.valiz.cl/products/${pieza.shopifyHandle}`}
+                className="block w-full bg-tinta text-papel px-6 py-4 text-sm tracking-wide text-center hover:bg-sepia transition"
+              >
+                Llevar esta pieza →
+              </a>
+              <p className="mt-3 text-xs text-ceniza text-center">
+                Mientras conectamos Shopify, el checkout se realiza en valiz.cl.
+              </p>
+            </div>
+          )}
 
           <Link
-            href={`/autor/marcelo-rojas`}
+            href="/autor/marcelo-rojas"
             className="mt-8 text-sm underline underline-offset-4 hover:text-sepia transition self-start"
           >
             ← Conocer a {pieza.autor}

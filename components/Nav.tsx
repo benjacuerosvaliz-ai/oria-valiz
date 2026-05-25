@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartButton } from "@/components/CartButton";
 
 export function Nav() {
   return (
@@ -7,7 +8,7 @@ export function Nav() {
         <Link href="/" className="display text-2xl tracking-tight">
           ORIA
         </Link>
-        <nav className="flex items-center gap-6 md:gap-8 text-sm">
+        <nav className="flex items-center gap-5 md:gap-7 text-sm">
           <Link href="/#piezas" className="hover:text-sepia transition">
             Las obras
           </Link>
@@ -17,15 +18,13 @@ export function Nav() {
           >
             Marcelo
           </Link>
-          <Link href="/manifiesto" className="hidden sm:inline hover:text-sepia transition">
+          <Link
+            href="/manifiesto"
+            className="hidden sm:inline hover:text-sepia transition"
+          >
             Manifiesto
           </Link>
-          <Link
-            href="#piezas"
-            className="bg-tinta text-papel px-4 py-2 hover:bg-sepia transition"
-          >
-            Comprar
-          </Link>
+          <CartButton />
         </nav>
       </div>
     </header>
