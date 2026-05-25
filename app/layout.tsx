@@ -23,15 +23,15 @@ const SITE_URL = "https://oria.valiz.cl";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "ORIA — Vitrina editorial para maestros chilenos del cuero",
+    default: "ORIA — Donde el cuero se firma con nombre",
     template: "%s · ORIA",
   },
   description:
-    "ORIA es un sello editorial que cada estación elige a un maestro chileno del cuero y le da vitrina, branding y alcance. Vol. 01: Marcelo Rojas.",
+    "Carteras, mochilas y accesorios hechos a mano por maestros chilenos. Una pieza, un autor.",
   openGraph: {
-    title: "ORIA — Vitrina editorial para los maestros chilenos del cuero",
+    title: "ORIA — Donde el cuero se firma con nombre",
     description:
-      "Cada estación elegimos a un autor y le damos vitrina, branding y alcance. La obra es siempre del autor. Vol. 01: Marcelo Rojas.",
+      "Carteras, mochilas y accesorios hechos a mano por maestros chilenos. Una pieza, un autor.",
     locale: "es_CL",
     type: "website",
     siteName: "ORIA",
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "ORIA — Vol. 01 · Marcelo Rojas",
+        alt: "ORIA — Donde el cuero se firma con nombre",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ORIA — Vitrina editorial para los maestros chilenos del cuero",
+    title: "ORIA — Donde el cuero se firma con nombre",
     description:
-      "Cada estación, un autor. La obra es siempre del autor. Vol. 01: Marcelo Rojas.",
+      "Carteras, mochilas y accesorios hechos a mano por maestros chilenos. Una pieza, un autor.",
     images: ["/og.png"],
   },
 };
