@@ -17,8 +17,13 @@ const inter = Inter({
   display: "swap",
 });
 
+// Mientras DNS oria.valiz.cl está pendiente, usamos la URL Vercel para que
+// los OG images resuelvan en producción. Switch a https://oria.valiz.cl
+// cuando esté el DNS.
+const SITE_URL = "https://oria-valiz.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://oria.valiz.cl"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "ORIA — Vitrina editorial para maestros chilenos del cuero",
     template: "%s · ORIA",
@@ -26,10 +31,29 @@ export const metadata: Metadata = {
   description:
     "ORIA es un sello editorial que cada estación elige a un maestro chileno del cuero y le da vitrina, branding y alcance. Vol. 01: Marcelo Rojas.",
   openGraph: {
-    title: "ORIA",
-    description: "Vitrina editorial para maestros chilenos del cuero.",
+    title: "ORIA — Vitrina editorial para los maestros chilenos del cuero",
+    description:
+      "Cada estación elegimos a un autor y le damos vitrina, branding y alcance. La obra es siempre del autor. Vol. 01: Marcelo Rojas.",
     locale: "es_CL",
     type: "website",
+    siteName: "ORIA",
+    url: SITE_URL,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "ORIA — Vol. 01 · Marcelo Rojas",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ORIA — Vitrina editorial para los maestros chilenos del cuero",
+    description:
+      "Cada estación, un autor. La obra es siempre del autor. Vol. 01: Marcelo Rojas.",
+    images: ["/og.png"],
   },
 };
 
