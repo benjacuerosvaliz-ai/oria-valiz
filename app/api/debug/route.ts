@@ -44,6 +44,25 @@ export async function GET(req: Request) {
 
   const url = new URL(req.url);
   const list = url.searchParams.get("list");
+  const inspect = url.searchParams.get("inspect");
+
+  if (inspect === "token") {
+    const t = process.env.SHOPIFY_STOREFRONT_TOKEN || process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || "";
+    const probe = await gqlRaw<{ shop: { name: string } }>(`{ shop { name } }`);
+    return NextResponse.json({
+      ok: true,
+      tokenSource: process.env.SHOPIFY_STOREFRONT_TOKEN ? "SHOPIFY_STOREFRONT_TOKEN" : process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN ? "NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN" : "none",
+      tokenLength: t.length,
+      tokenPrefix: t.slice(0, 4),
+      tokenSuffix: t.slice(-4),
+      tokenHasWhitespace: /\s/.test(t),
+      tokenStartsWithAtkn: t.startsWith("atkn_"),
+      tokenStartsWithShpat: t.startsWith("shpat_"),
+      shopProbe: probe,
+      apiDomain: "valiz-cl.myshopify.com",
+      apiVersion: "2025-01",
+    });
+  }
 
   if (list === "all" || list === "oria") {
     const query = list === "oria"
