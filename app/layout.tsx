@@ -17,10 +17,8 @@ const inter = Inter({
   display: "swap",
 });
 
-// Mientras DNS oria.valiz.cl está pendiente, usamos la URL Vercel para que
-// los OG images resuelvan en producción. Switch a https://oria.valiz.cl
-// cuando esté el DNS.
-const SITE_URL = "https://oria-valiz.vercel.app";
+// Dominio canónico. oria-valiz.vercel.app sigue funcionando como alias.
+const SITE_URL = "https://oria.valiz.cl";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
