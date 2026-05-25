@@ -47,7 +47,7 @@ export const PIEZAS: Pieza[] = [
     slug: "funda-computador",
     titulo: "Funda de computador",
     autor: "Marcelo Rojas",
-    shopifyHandle: "funda-de-computador-oria",
+    shopifyHandle: "funda-de-computador-marcelo-oria",
   },
   {
     slug: "tarjetero",
