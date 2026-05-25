@@ -3,47 +3,58 @@ import { getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
 import { MarceloBanner } from "@/components/MarceloBanner";
+import { LogoMark } from "@/components/LogoMark";
 
 export default async function HomePage() {
   const piezas = await getPiezasConShopify();
   return (
     <div>
-      {/* Hero compacto comercial */}
+      {/* Hero — manifiesto de entrada ORIA */}
       <section className="border-b border-linea/60">
-        <div className="mx-auto max-w-6xl px-6 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <p className="eyebrow mb-4">Vol. 01 · Estación 2026</p>
-            <h1 className="display text-5xl md:text-6xl leading-[1] mb-5">
-              ORIA
-            </h1>
-            <p className="text-xl md:text-2xl text-tinta/85 leading-snug mb-6 display">
-              Siete piezas de cuero,<br />
-              hechas a mano por <span className="text-sepia">Marcelo Rojas</span>.
-            </p>
-            <p className="text-ceniza text-base leading-relaxed mb-8 max-w-md">
-              Diseños originales del autor. Cada pieza única, firmada y hecha
-              en Chile.
-            </p>
-            <div className="flex gap-4 items-center">
-              <Link
-                href="#piezas"
-                className="bg-tinta text-papel px-6 py-3.5 text-sm tracking-wide hover:bg-sepia transition"
-              >
-                Ver las piezas
-              </Link>
-              <Link
-                href="/autor/marcelo-rojas"
-                className="text-sm underline underline-offset-4 hover:text-sepia transition"
-              >
-                Quién es Marcelo
-              </Link>
-            </div>
+        <div className="mx-auto max-w-3xl px-6 py-20 md:py-28 text-center">
+          <p className="eyebrow mb-10">Vol. 01 · Estación 2026</p>
+
+          <div className="mb-10 md:mb-14 flex justify-center">
+            <LogoMark
+              className="h-20 sm:h-28 md:h-36 lg:h-44 w-auto"
+              priority
+            />
           </div>
-          <Placeholder label="Hero — pieza destacada o retrato" height="380px">
-            Imagen comercial fuerte: producto estrella sobre fondo neutro o
-            retrato de Marcelo con una pieza en mano. Reemplazar cuando llegue
-            material fotográfico.
-          </Placeholder>
+
+          <h1 className="display text-3xl md:text-4xl lg:text-5xl leading-[1.1] mb-7 max-w-2xl mx-auto">
+            Un sello editorial para los maestros<br className="hidden md:inline" />{" "}
+            chilenos del cuero.
+          </h1>
+
+          <p className="text-base md:text-lg text-ceniza leading-relaxed mb-8 max-w-xl mx-auto">
+            Cada estación elegimos a un autor y le damos vitrina, branding y
+            alcance. La obra es siempre del autor.
+          </p>
+
+          <p className="text-xs md:text-sm text-ceniza tracking-[0.18em] uppercase mb-10">
+            hist<span className="text-sepia">oria</span>
+            <span className="mx-2">·</span>
+            mem<span className="text-sepia">oria</span>
+            <span className="mx-2">·</span>
+            trayect<span className="text-sepia">oria</span>
+            <span className="mx-2">·</span>
+            vict<span className="text-sepia">oria</span>
+          </p>
+
+          <div className="flex gap-5 items-center justify-center flex-wrap">
+            <Link
+              href="#piezas"
+              className="bg-tinta text-papel px-6 py-3.5 text-sm tracking-wide hover:bg-sepia transition"
+            >
+              Ver las piezas
+            </Link>
+            <Link
+              href="/manifiesto"
+              className="text-sm underline underline-offset-4 hover:text-sepia transition"
+            >
+              Leer el manifiesto
+            </Link>
+          </div>
         </div>
       </section>
 
