@@ -157,6 +157,13 @@ export default async function CarritoPage() {
           <p className="text-xs text-ceniza mb-4">
             Despacho calculado en el checkout.
           </p>
+          <div className="mb-4 border-l-2 border-bramante pl-3 max-w-sm text-left ml-auto">
+            <p className="text-xs text-ceniza leading-relaxed">
+              El pago se procesa a través de <span className="text-tinta">Valiz</span>,
+              el sello que produce y distribuye ORIA. Tu compra apoya directo
+              al oficio de Marcelo Rojas.
+            </p>
+          </div>
           <form action={goToCheckout}>
             <button
               type="submit"

@@ -53,6 +53,9 @@ export function AddToCart({ handle }: { handle: string }) {
           {feedback}
         </p>
       )}
+      <p className="text-[0.7rem] text-ceniza text-center mt-3 leading-relaxed">
+        Pago procesado por Valiz, sello que distribuye ORIA.
+      </p>
     </div>
   );
 }
