@@ -101,7 +101,7 @@ export default async function PiezaPage({
             </p>
           )}
 
-          {shopProduct ? (
+          {shopProduct && parseFloat(shopProduct.priceRange.minVariantPrice.amount) > 0 ? (
             <p className="display text-3xl mb-8">
               {formatCLP(shopProduct.priceRange.minVariantPrice.amount)}
               {!shopProduct.availableForSale && (
@@ -112,9 +112,11 @@ export default async function PiezaPage({
             </p>
           ) : (
             <p className="text-sm text-ceniza mb-8 italic">
-              {hasShopify()
-                ? "Precio no disponible."
-                : "Precio aparece cuando se conecte Shopify."}
+              {shopProduct
+                ? "Precio próximamente."
+                : hasShopify()
+                  ? "Precio no disponible."
+                  : "Precio aparece cuando se conecte Shopify."}
             </p>
           )}
 
@@ -152,8 +154,17 @@ export default async function PiezaPage({
             </dl>
           )}
 
-          {hasShopify() ? (
+          {shopProduct &&
+          shopProduct.availableForSale &&
+          parseFloat(shopProduct.priceRange.minVariantPrice.amount) > 0 ? (
             <AddToCart handle={pieza.shopifyHandle} />
+          ) : shopProduct ? (
+            <div className="mt-12 border border-linea/60 px-5 py-6 text-center">
+              <p className="display text-lg mb-1">Vuelve pronto.</p>
+              <p className="text-sm text-ceniza">
+                Esta pieza aún no está lista para la venta.
+              </p>
+            </div>
           ) : (
             <div className="mt-12">
               <a

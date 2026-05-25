@@ -37,13 +37,15 @@ export function PiezaCard({ pieza, image, price, availableForSale }: Props) {
       {pieza.subtitulo && (
         <p className="mt-1 text-sm text-ceniza italic">{pieza.subtitulo}</p>
       )}
-      {price && (
+      {price && parseFloat(price.amount) > 0 ? (
         <p className="mt-1.5 text-sm">
           <span className="display">{formatCLP(price.amount)}</span>
           {availableForSale === false && (
             <span className="text-xs text-ceniza ml-2">· agotado</span>
           )}
         </p>
+      ) : (
+        <p className="mt-1.5 text-xs text-ceniza italic">Próximamente</p>
       )}
     </Link>
   );
