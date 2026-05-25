@@ -51,7 +51,7 @@ export async function GET(req: Request) {
       : `query { products(first: 50) { edges { node { handle title availableForSale } } } }`;
     const data = await gqlRaw<{ products: { edges: { node: { handle: string; title: string; availableForSale: boolean } }[] } }>(query);
     if ("error" in data) {
-      return NextResponse.json({ ok: false, error: data.error }, { status: 500 });
+      return NextResponse.json({ ok: false, error: data.error });
     }
     return NextResponse.json({
       ok: true,
