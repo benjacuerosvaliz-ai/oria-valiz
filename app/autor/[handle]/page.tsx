@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { loadDoc } from "@/lib/content";
-import { PIEZAS } from "@/lib/piezas";
+import { PIEZAS, getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
 
@@ -44,7 +44,9 @@ export default async function AutorPage({
   if (!AUTORES_REGISTRADOS.includes(handle)) notFound();
 
   const doc = loadDoc<AutorFrontmatter>("autores", handle);
-  const obras = PIEZAS.filter((p) => p.autor === doc.frontmatter.nombre);
+  const obras = await getPiezasConShopify(
+    PIEZAS.filter((p) => p.autor === doc.frontmatter.nombre)
+  );
 
   return (
     <div>
@@ -99,8 +101,14 @@ export default async function AutorPage({
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="display text-3xl mb-8">Obras firmadas</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {obras.map((p) => (
-              <PiezaCard key={p.slug} pieza={p} />
+            {obras.map(({ pieza, image, price, availableForSale }) => (
+              <PiezaCard
+                key={pieza.slug}
+                pieza={pieza}
+                image={image}
+                price={price}
+                availableForSale={availableForSale}
+              />
             ))}
           </div>
           <div className="mt-10">

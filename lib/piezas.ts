@@ -66,3 +66,32 @@ export const PIEZAS: Pieza[] = [
 export function getPieza(slug: string): Pieza | undefined {
   return PIEZAS.find((p) => p.slug === slug);
 }
+
+/**
+ * Une el mock estático con los datos vivos de Shopify (precio, foto, stock).
+ * Usado en grids (home, vol-01, perfil de autor) para mostrar fichas vendibles.
+ */
+import { getProductByHandle } from "@/lib/shopify";
+
+export type PiezaConShopify = {
+  pieza: Pieza;
+  image: { url: string; altText: string | null } | null;
+  price: { amount: string; currencyCode: string } | null;
+  availableForSale: boolean | null;
+};
+
+export async function getPiezasConShopify(
+  piezas: Pieza[] = PIEZAS
+): Promise<PiezaConShopify[]> {
+  return Promise.all(
+    piezas.map(async (p) => {
+      const product = await getProductByHandle(p.shopifyHandle);
+      return {
+        pieza: p,
+        image: product?.featuredImage ?? null,
+        price: product?.priceRange.minVariantPrice ?? null,
+        availableForSale: product?.availableForSale ?? null,
+      };
+    })
+  );
+}

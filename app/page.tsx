@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { PIEZAS } from "@/lib/piezas";
+import { getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const piezas = await getPiezasConShopify();
   return (
     <div>
       {/* Hero compacto comercial */}
@@ -58,8 +59,14 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
-            {PIEZAS.map((pieza) => (
-              <PiezaCard key={pieza.slug} pieza={pieza} />
+            {piezas.map(({ pieza, image, price, availableForSale }) => (
+              <PiezaCard
+                key={pieza.slug}
+                pieza={pieza}
+                image={image}
+                price={price}
+                availableForSale={availableForSale}
+              />
             ))}
           </div>
           <div className="mt-12 flex justify-center">

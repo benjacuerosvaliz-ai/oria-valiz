@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PIEZAS } from "@/lib/piezas";
+import { getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
 
@@ -7,7 +7,8 @@ export const metadata = {
   title: "Vol. 01 — Marcelo Rojas",
 };
 
-export default function Vol01Page() {
+export default async function Vol01Page() {
+  const piezas = await getPiezasConShopify();
   return (
     <div>
       <section className="border-b border-linea/60">
@@ -48,8 +49,14 @@ export default function Vol01Page() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="display text-4xl mb-10">Las siete obras</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {PIEZAS.map((p) => (
-              <PiezaCard key={p.slug} pieza={p} />
+            {piezas.map(({ pieza, image, price, availableForSale }) => (
+              <PiezaCard
+                key={pieza.slug}
+                pieza={pieza}
+                image={image}
+                price={price}
+                availableForSale={availableForSale}
+              />
             ))}
           </div>
         </div>
