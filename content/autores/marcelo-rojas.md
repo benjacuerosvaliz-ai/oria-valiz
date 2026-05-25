@@ -1,6 +1,6 @@
 ---
 nombre: Marcelo Rojas
-vol: Vol. 01 · Estación 2026
+vol: Vol. 01 · Colección 2026
 oficio: Marroquinería en cuero
 ciudad: PENDIENTE
 anos_oficio: PENDIENTE

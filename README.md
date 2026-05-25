@@ -23,7 +23,7 @@ Capa Next.js 16 sobre Shopify Storefront API. Desplegada en
 app/
   page.tsx                  # Home
   manifiesto/page.tsx       # /manifiesto
-  vol-01/page.tsx           # /vol-01 (autor de la estación)
+  vol-01/page.tsx           # /vol-01 (autor de la colección)
   autor/[handle]/page.tsx   # /autor/marcelo-rojas
   pieza/[slug]/page.tsx     # /pieza/cartera-saco etc.
 components/                 # Nav, Footer, PiezaCard, Placeholder

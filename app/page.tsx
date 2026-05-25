@@ -12,7 +12,7 @@ export default async function HomePage() {
       {/* Hero — manifiesto de entrada ORIA */}
       <section className="border-b border-linea/60">
         <div className="mx-auto max-w-3xl px-6 py-20 md:py-28 text-center">
-          <p className="eyebrow mb-10">Vol. 01 · Estación 2026</p>
+          <p className="eyebrow mb-10">Vol. 01 · Colección 2026</p>
 
           <div className="mb-10 md:mb-14 flex justify-center">
             <LogoMark
@@ -22,13 +22,13 @@ export default async function HomePage() {
           </div>
 
           <h1 className="display text-3xl md:text-4xl lg:text-5xl leading-[1.1] mb-7 max-w-2xl mx-auto">
-            Un sello editorial para los maestros<br className="hidden md:inline" />{" "}
-            chilenos del cuero.
+            Donde el cuero<br className="hidden md:inline" />{" "}
+            se firma con nombre.
           </h1>
 
           <p className="text-base md:text-lg text-ceniza leading-relaxed mb-8 max-w-xl mx-auto">
-            Cada estación elegimos a un autor y le damos vitrina, branding y
-            alcance. La obra es siempre del autor.
+            Cada colección, un nuevo autor. Carteras, mochilas y accesorios
+            hechos a mano por maestros chilenos.
           </p>
 
           <p className="text-xs md:text-sm text-ceniza tracking-[0.18em] uppercase mb-2">
@@ -112,10 +112,9 @@ export default async function HomePage() {
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
           <p className="eyebrow mb-5">Qué es ORIA</p>
           <p className="display text-2xl md:text-3xl leading-tight mb-8">
-            Un sello editorial que cada estación elige a un maestro chileno
-            del cuero y le da{" "}
-            <span className="text-sepia">vitrina, branding y alcance</span>.
-            La obra siempre es del autor.
+            Cada colección le da{" "}
+            <span className="text-sepia">vitrina, branding y alcance</span>{" "}
+            a un maestro chileno del cuero. La obra siempre es del autor.
           </p>
           <Link
             href="/manifiesto"

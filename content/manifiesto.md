@@ -23,7 +23,7 @@ apropiamos del trabajo de nadie.
 
 ## Qué somos
 
-Somos un sello editorial. Cada estación elegimos a un autor. Le damos vitrina,
+Somos un sello editorial. Cada colección elegimos a un autor. Le damos vitrina,
 branding, ecommerce, alcance. La obra es suya. La firma también.
 
 ## El nombre

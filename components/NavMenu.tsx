@@ -20,7 +20,11 @@ const CATEGORIAS: { label: string; slugs: string[] }[] = [
 type Maestro = { handle: string; nombre: string; vol: string };
 
 const MAESTROS: Maestro[] = [
-  { handle: "marcelo-rojas", nombre: "Marcelo Rojas", vol: "Vol. 01 · 2026" },
+  {
+    handle: "marcelo-rojas",
+    nombre: "Marcelo Rojas",
+    vol: "Vol. 01 · Colección 2026",
+  },
 ];
 
 type OpenPanel = "productos" | "maestros" | "mobile" | null;
@@ -100,7 +104,7 @@ export function NavMenu({ cartButton }: { cartButton: ReactNode }) {
           </ul>
           <div className="mt-5 pt-3 border-t border-linea/40">
             <p className="text-xs text-ceniza italic">
-              Cada estación, un nuevo maestro.
+              Cada colección, un nuevo maestro.
             </p>
           </div>
         </Dropdown>

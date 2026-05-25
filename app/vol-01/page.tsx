@@ -13,7 +13,7 @@ export default async function Vol01Page() {
     <div>
       <section className="border-b border-linea/60">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <p className="eyebrow mb-6">Vol. 01 · Estación 2026</p>
+          <p className="eyebrow mb-6">Vol. 01 · Colección 2026</p>
           <h1 className="display text-6xl md:text-7xl max-w-3xl">
             Marcelo Rojas
           </h1>
