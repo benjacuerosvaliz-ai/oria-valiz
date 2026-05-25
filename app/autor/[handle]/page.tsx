@@ -4,6 +4,7 @@ import { loadDoc } from "@/lib/content";
 import { PIEZAS, getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
+import { MarceloBanner } from "@/components/MarceloBanner";
 
 type AutorFrontmatter = {
   nombre: string;
@@ -50,41 +51,36 @@ export default async function AutorPage({
 
   return (
     <div>
+      <MarceloBanner showCTA={false} />
+
       <section className="border-b border-linea/60">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-end">
-          <div>
-            <p className="eyebrow mb-6">{doc.frontmatter.vol ?? "Autor ORIA"}</p>
-            <h1 className="display text-6xl md:text-7xl">
-              {doc.frontmatter.nombre}
-            </h1>
-            <dl className="mt-8 text-sm text-ceniza grid grid-cols-2 gap-y-3 gap-x-8 max-w-md">
-              {doc.frontmatter.oficio && (
-                <>
-                  <dt className="eyebrow">Oficio</dt>
-                  <dd>{doc.frontmatter.oficio}</dd>
-                </>
-              )}
-              {doc.frontmatter.ciudad && (
-                <>
-                  <dt className="eyebrow">Ciudad</dt>
-                  <dd>{doc.frontmatter.ciudad}</dd>
-                </>
-              )}
-              {doc.frontmatter.anos_oficio && (
-                <>
-                  <dt className="eyebrow">Años de oficio</dt>
-                  <dd>{doc.frontmatter.anos_oficio}</dd>
-                </>
-              )}
-              {doc.frontmatter.taller && (
-                <>
-                  <dt className="eyebrow">Taller</dt>
-                  <dd>{doc.frontmatter.taller}</dd>
-                </>
-              )}
-            </dl>
-          </div>
-          <Placeholder label="Retrato editorial" height="480px" />
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          <dl className="text-sm text-ceniza grid grid-cols-2 md:grid-cols-4 gap-y-3 gap-x-8">
+            {doc.frontmatter.oficio && (
+              <div>
+                <dt className="eyebrow mb-1">Oficio</dt>
+                <dd>{doc.frontmatter.oficio}</dd>
+              </div>
+            )}
+            {doc.frontmatter.ciudad && (
+              <div>
+                <dt className="eyebrow mb-1">Ciudad</dt>
+                <dd>{doc.frontmatter.ciudad}</dd>
+              </div>
+            )}
+            {doc.frontmatter.anos_oficio && (
+              <div>
+                <dt className="eyebrow mb-1">Años de oficio</dt>
+                <dd>{doc.frontmatter.anos_oficio}</dd>
+              </div>
+            )}
+            {doc.frontmatter.taller && (
+              <div>
+                <dt className="eyebrow mb-1">Taller</dt>
+                <dd>{doc.frontmatter.taller}</dd>
+              </div>
+            )}
+          </dl>
         </div>
       </section>
 

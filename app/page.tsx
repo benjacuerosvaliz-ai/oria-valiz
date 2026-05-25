@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getPiezasConShopify } from "@/lib/piezas";
 import { PiezaCard } from "@/components/PiezaCard";
 import { Placeholder } from "@/components/Placeholder";
+import { MarceloBanner } from "@/components/MarceloBanner";
 
 export default async function HomePage() {
   const piezas = await getPiezasConShopify();
@@ -77,40 +78,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Detrás del oficio — Marcelo */}
-      <section className="border-b border-linea/60 bg-archivo/60">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <p className="eyebrow mb-3 text-center">Detrás del oficio</p>
-          <h2 className="display text-4xl md:text-5xl text-center mb-12 max-w-2xl mx-auto">
-            Marcelo Rojas, autor del Vol. 01.
-          </h2>
+      {/* Banner Marcelo — autor del Vol. 01 */}
+      <MarceloBanner showCTA />
 
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            <Placeholder label="Video documental (16:9, sin sonido, loop)" height="320px">
-              Video corto del taller: manos cortando cuero, costura, herramienta
-              en uso. Sin diálogo, con loop, autoplay muted. Reemplazar cuando
-              llegue el material.
-            </Placeholder>
-
-            <div>
-              <p className="text-lg leading-relaxed text-tinta/90 mb-5">
-                Marcelo es uno de esos maestros que llevan años haciendo cuero
-                de autor sin que nadie los nombre. ORIA existe para cambiar eso.
-              </p>
-              <p className="text-base leading-relaxed text-ceniza mb-8">
-                <em className="text-sepia not-italic">Bio editorial pendiente.</em>{" "}
-                Cuando tengamos su historia grabada, este espacio cuenta de
-                dónde viene, cómo aprendió y por qué cada una de sus piezas
-                tiene la forma que tiene.
-              </p>
-              <Link
-                href="/autor/marcelo-rojas"
-                className="inline-block text-sm border-b border-tinta pb-0.5 hover:text-sepia hover:border-sepia transition"
-              >
-                Conocer a Marcelo →
-              </Link>
-            </div>
-          </div>
+      {/* Video documental — espacio reservado */}
+      <section className="border-b border-linea/60">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <p className="eyebrow mb-6 text-center">Su oficio en movimiento</p>
+          <Placeholder label="Video documental (16:9, sin sonido, loop)" height="380px">
+            Video corto del taller: manos cortando cuero, costura, herramienta
+            en uso. Sin diálogo, con loop, autoplay muted. Reemplazar cuando
+            llegue el material.
+          </Placeholder>
         </div>
       </section>
 
