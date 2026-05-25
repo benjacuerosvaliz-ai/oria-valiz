@@ -80,19 +80,43 @@ export async function GET(req: Request) {
     });
   }
 
-  // Default: validar handles del mock
+  // Default: validar handles del mock. Bypass de cache para diagnóstico.
+  const freshQuery = `
+    query Probe($handle: String!) {
+      product: productByHandle(handle: $handle) {
+        handle
+        title
+        availableForSale
+        totalInventory
+        priceRange { minVariantPrice { amount currencyCode } }
+        variants(first: 5) {
+          edges {
+            node {
+              title
+              availableForSale
+              quantityAvailable
+              price { amount currencyCode }
+            }
+          }
+        }
+      }
+    }`;
   const results = await Promise.all(
     PIEZAS.map(async (p) => {
-      const product = await getProductByHandle(p.shopifyHandle);
+      const data = await gqlRaw<{ product: { handle: string; title: string; availableForSale: boolean; totalInventory: number | null; priceRange: { minVariantPrice: { amount: string; currencyCode: string } }; variants: { edges: { node: { title: string; availableForSale: boolean; quantityAvailable: number | null; price: { amount: string; currencyCode: string } } }[] } } | null }>(freshQuery, { handle: p.shopifyHandle });
+      if ("error" in data) {
+        return { slug: p.slug, mockHandle: p.shopifyHandle, found: false, error: data.error };
+      }
+      const product = data.product;
       return {
         slug: p.slug,
         mockHandle: p.shopifyHandle,
         found: !!product,
         realTitle: product?.title ?? null,
         availableForSale: product?.availableForSale ?? null,
+        totalInventory: product?.totalInventory ?? null,
         priceMin: product?.priceRange.minVariantPrice ?? null,
-        imageCount: product?.images.length ?? 0,
-        variantCount: product?.variants.length ?? 0,
+        variants: product?.variants.edges.map((e) => e.node) ?? [],
       };
     })
   );
