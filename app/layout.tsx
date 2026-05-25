@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { TopStrip } from "@/components/TopStrip";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-papel text-tinta">
+        <TopStrip />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
